@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Widget> screens = [
-    const MovieListView(),
+     MovieListView(),
     Container(color: Colors.blue),
     Container(color: Colors.green),
     Container(color: Colors.red),

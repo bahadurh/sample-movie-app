@@ -16,14 +16,14 @@ import '../controllers/search_controller.dart';
 import 'genre_detail_view.dart';
 import 'movie_detail_view.dart';
 
-class MovieSearchPage extends StatefulWidget {
-  const MovieSearchPage({super.key});
+class SearchMoviesView extends StatefulWidget {
+  const SearchMoviesView({super.key});
 
   @override
-  State<MovieSearchPage> createState() => _MovieSearchPageState();
+  State<SearchMoviesView> createState() => _SearchMoviesViewState();
 }
 
-class _MovieSearchPageState extends State<MovieSearchPage> {
+class _SearchMoviesViewState extends State<SearchMoviesView> {
   List<Genre> genres = [];
   final TextEditingController _searchController = TextEditingController();
   final Debouncer _debouncer = Debouncer(delay: const Duration(milliseconds: 500));

@@ -9,18 +9,22 @@ import 'common/new_network/dio_client.dart';
 import 'features/movies/domain/repositories/movie_repository.dart';
 import 'features/movies/domain/usecases/getMovieDetailsUseCase.dart';
 import 'features/movies/domain/usecases/get_genres_usecase.dart';
+import 'features/movies/domain/usecases/get_upcomming_movies_usecase.dart';
+import 'features/movies/presentation/controllers/upcomming_movies_controller.dart';
 
 final getIt = GetIt.instance;
 
 Future<void> initDependency() async {
   // Global controller
   Get.lazyPut(() => AppController());
+  Get.lazyPut(()=>UpcomingMoviesController(getIt<GetUpcomingMoviesUseCase>()));
 
   // movie use cases
   getIt.registerLazySingleton(() => SearchMoviesUseCase(getIt<MovieRepository>()));
   getIt.registerLazySingleton(() => SearchGenreMoviesUseCase(getIt<MovieRepository>()));
   getIt.registerLazySingleton(() => GetGenresUseCase(getIt<MovieRepository>()));
   getIt.registerLazySingleton(() => GetMovieDetailsUseCase(getIt<MovieRepository>()));
+  getIt.registerLazySingleton(() => GetUpcomingMoviesUseCase(getIt<MovieRepository>()));
 
 
   // Movie repository

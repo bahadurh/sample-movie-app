@@ -46,6 +46,7 @@ dependencies:
   cached_network_image:
   google_fonts: ^6.2.1
   intl:
+  infinite_scroll_pagination: ^4.1.0
 
 dev_dependencies:
   flutter_test:

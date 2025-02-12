@@ -10,4 +10,5 @@ abstract class MovieRepository {
   Future<Result<MovieSearchResult>> searchByGenre(String genre, int page);
   Future<Result<List<Genre>>> getGenres();
   Future<Result<Movie>> getMovieDetails(int movieId);
+  Future<Result<MovieSearchResult>> getUpcomingMovies(int page);
 }

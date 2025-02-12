@@ -59,4 +59,16 @@ class MovieRepositoryImpl extends MovieRepository {
 
     return result;
   }
+
+  @override
+  Future<Result<MovieSearchResult>> getUpcomingMovies(int page) async {
+    final result = await DioHelper.toResult(
+      client.get('/movie/upcoming?page=$page'),
+      (result) {
+        return MovieSearchResult.fromJson(result);
+      },
+    );
+
+    return result;
+  }
 }
