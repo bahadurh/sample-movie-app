@@ -33,5 +33,5 @@ class SearchItem extends StatelessWidget {
     );
   }
 
-  String get genreName => item.genreIds.isNotEmpty ? availableGenres[item.genreIds.first]?.name ?? "" : "unknown";
+  String get genreName => (item.genreIds?.isNotEmpty ?? false) ? availableGenres[item.genreIds!.first]?.name ?? "" : "unknown";
 }

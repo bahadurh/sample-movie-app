@@ -11,6 +11,7 @@ import 'package:tentwentyassesment/features/movies/presentation/widgets/search_i
 import '../../../../core/app_style.dart';
 import '../../../../di.dart';
 import '../../data/models/movie.dart';
+import '../../domain/usecases/get_genres_usecase.dart';
 import '../controllers/search_controller.dart';
 import 'genre_detail_view.dart';
 import 'movie_detail_view.dart';
@@ -37,7 +38,7 @@ class _MovieSearchPageState extends State<MovieSearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GetBuilder<MovieSearchController>(
-        init: MovieSearchController(getIt<SearchMoviesUseCase>()),
+        init: MovieSearchController(getIt<SearchMoviesUseCase>(), getIt<GetGenresUseCase>()),
         builder: (controller) {
           return Column(
             children: [

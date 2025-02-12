@@ -29,7 +29,7 @@ final Map<int, Genre> availableGenres = {
 };
 
 String getRandomThumbnail() {
-  return "https://picsum.photos/400/600?random=${random.nextInt(100)}";
+  return "https://picsum.photos/400/600?random=${random.nextInt(1000)}";
 }
 
 /// Converting the date string to a formatted date

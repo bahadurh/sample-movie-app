@@ -1,5 +1,6 @@
 import '../../../../common/new_network/api_config.dart';
 import '../../domain/entities/movie_entity.dart';
+import 'genre.dart';
 
 class Movie extends MovieEntity {
   Movie({
@@ -8,8 +9,9 @@ class Movie extends MovieEntity {
     required super.overview,
     required super.posterPath,
     required super.backdropPath,
-    required super.genreIds,
     required super.releaseDate,
+    super.genreIds,
+    super.genres,
   });
 
   factory Movie.fromJson(Map<String, dynamic> json) {
@@ -21,7 +23,8 @@ class Movie extends MovieEntity {
       overview: json['overview'],
       posterPath: posterPath != null ? ApiConfig.imageBaseUrl + posterPath : null,
       backdropPath: backdropPath != null ? ApiConfig.imageBaseUrl + backdropPath : null,
-      genreIds: List<int>.from(json['genre_ids']),
+      genreIds: json['genre_ids'] != null ? List<int>.from(json['genre_ids']) : null,
+      genres: json['genres'] != null ? List<Genre>.from(json['genres']?.map((x) => Genre.fromJson(x))) : null,
       releaseDate: json['release_date'],
     );
   }
@@ -36,5 +39,27 @@ class Movie extends MovieEntity {
       'genre_ids': genreIds,
       'release_date': releaseDate,
     };
+  }
+
+  Movie copyWith({
+    int? id,
+    String? title,
+    String? overview,
+    String? posterPath,
+    String? backdropPath,
+    List<int>? genreIds,
+    List<Genre>? genres,
+    String? releaseDate,
+  }) {
+    return Movie(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      overview: overview ?? this.overview,
+      posterPath: posterPath ?? this.posterPath,
+      backdropPath: backdropPath ?? this.backdropPath,
+      genreIds: genreIds ?? this.genreIds,
+      genres: genres ?? this.genres,
+      releaseDate: releaseDate ?? this.releaseDate,
+    );
   }
 }

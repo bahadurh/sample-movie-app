@@ -27,9 +27,9 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: IconButton(
+      leading: Navigator.of(context).canPop() ? IconButton(
           onPressed: () => Navigator.of(context).pop(),
-          icon: isDarkMode ? const Icon(Icons.arrow_back_ios, color: Colors.white) : const Icon(Icons.arrow_back_ios, color: Colors.black)),
+          icon: isDarkMode ? const Icon(Icons.arrow_back_ios, color: Colors.white) : const Icon(Icons.arrow_back_ios, color: Colors.black)) : null,
       backgroundColor: backgroundColor,
       iconTheme: iconTheme,
       title: Text(title, style: titleTextStyle),

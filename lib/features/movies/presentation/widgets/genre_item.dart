@@ -32,7 +32,7 @@ class GenreItem extends StatelessWidget {
           left: 10,
           right: 10,
           bottom: 20,
-          child: Text(genre.name, style: textStyle16MediumWhite),
+          child: Text(genre.name ?? "", style: textStyle16MediumWhite),
         ),
       ],
     );

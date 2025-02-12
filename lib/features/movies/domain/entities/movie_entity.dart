@@ -1,10 +1,13 @@
+import 'package:tentwentyassesment/features/movies/data/models/genre.dart';
+
 class MovieEntity {
   final int id;
   final String title;
   final String overview;
   final String? posterPath;
   final String? backdropPath;
-  final List<int> genreIds;
+  final List<int>? genreIds;
+  final List<Genre>? genres;
   final String releaseDate;
 
   MovieEntity({
@@ -13,8 +16,9 @@ class MovieEntity {
     required this.overview,
     required this.posterPath,
     required this.backdropPath,
-    required this.genreIds,
     required this.releaseDate,
+    this.genreIds,
+    this.genres,
   });
 
   static List<MovieEntity> seed() {
@@ -27,7 +31,7 @@ class MovieEntity {
           overview: "Overview $index",
           posterPath: "https://image.tmdb.org/t/p/w500/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg",
           backdropPath: "https://image.tmdb.org/t/p/w500/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg",
-          genreIds: [1, 2, 3],
+          genreIds: [],
           releaseDate: "2021-09-29",
         );
       },

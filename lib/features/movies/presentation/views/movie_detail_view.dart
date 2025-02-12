@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tentwentyassesment/common/widget/custom_chip.dart';
 import 'package:tentwentyassesment/common/widget/network_image.dart';
 import 'package:tentwentyassesment/common/widget/outlined_button.dart';
 import 'package:tentwentyassesment/common/widget/primary_button.dart';
 import 'package:tentwentyassesment/core/app_style.dart';
+import 'package:tentwentyassesment/features/movies/presentation/controllers/movie_detail_controller.dart';
 
 import '../../../../core/app_utils.dart';
+import '../../../../di.dart';
 import '../../data/models/movie.dart';
+import '../../domain/usecases/getMovieDetailsUseCase.dart';
 
 class MovieDetailView extends StatelessWidget {
   final Movie item;
@@ -126,34 +130,43 @@ class MovieDetailView extends StatelessWidget {
   }
 
   Widget _buildGenre() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(height: 27),
-        Text("Genres", style: textStyle14SemiBoldBlack),
-        SizedBox(height: 14),
-        Wrap(
-          spacing: 10,
-          runSpacing: 10,
-          children: item.genreIds.map(
-            (e) {
-              final genre = availableGenres[e];
-              if (genre != null) {
-                return CustomChip(
-                  text: genre.name,
-                  backgroundColor: ColorHelper.getRandomChipColor(item.genreIds.indexOf(e)),
-                );
-              }
+    return GetBuilder<MovieDetailController>(
+        init: MovieDetailController(item, getMovieDetailsUseCase: getIt<GetMovieDetailsUseCase>()),
+        builder: (controller) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 27),
+              Text("Genres", style: textStyle14SemiBoldBlack),
+              SizedBox(height: 14),
+              controller.isLoading
+                  ? Center(child: CircularProgressIndicator())
+                  : (controller.movie.genres?.isEmpty ?? true)
+                      ? SizedBox.shrink()
+                      : Wrap(
+                          spacing: 10,
+                          runSpacing: 10,
+                          children: controller.movie.genres!.map(
+                            (e) {
+                              final genre = e;
+                              final index = controller.movie.genres!.indexOf(e);
+                              if (genre.name != null) {
+                                return CustomChip(
+                                  text: genre.name!,
+                                  backgroundColor: ColorHelper.getRandomChipColor(index),
+                                );
+                              }
 
-              /// If not supported genre, returning empty widget
-              return const SizedBox();
-            },
-          ).toList(),
-        ),
-        SizedBox(height: 22),
-        Divider(color: AppColors.greyLight, thickness: 1),
-      ],
-    );
+                              /// If not supported genre, returning empty widget
+                    return const SizedBox();
+                  },
+                ).toList(),
+              ),
+              SizedBox(height: 22),
+              Divider(color: AppColors.greyLight, thickness: 1),
+            ],
+          );
+        });
   }
 }
