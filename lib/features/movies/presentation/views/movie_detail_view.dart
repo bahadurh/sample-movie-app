@@ -40,7 +40,7 @@ class MovieDetailView extends StatelessWidget {
                   Text("Overview", style: textStyle14SemiBoldBlack),
                   SizedBox(height: 14),
                   Text(
-                    item.overview ?? "",
+                    item.overview,
                     style: textStyle12RegularSemiMoreLight,
                   ),
                   SizedBox(height: 20),
@@ -56,6 +56,7 @@ class MovieDetailView extends StatelessWidget {
   Widget _buildSliverAppBar(BuildContext context) {
     final double expandedHeight = MediaQuery.of(context).size.height * 0.57;
 
+    final dateTimeString = dateFormatter(item.releaseDate);
     return SliverAppBar(
       expandedHeight: expandedHeight,
       pinned: true,
@@ -111,8 +112,8 @@ class MovieDetailView extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text("In Theaters ${dateFormatter(item.releaseDate)}", style: textStyle16MediumWhite, textAlign: TextAlign.center),
-                  SizedBox(height: 20),
+                 if(dateTimeString!=null) Text("In Theaters ${dateTimeString}", style: textStyle16MediumWhite, textAlign: TextAlign.center),
+                  if(dateTimeString!=null)  SizedBox(height: 20),
                   SolidButton.primary(onPressed: _onGetTickTap, text: "Get Tickets"),
                   SizedBox(height: 10),
                   OutlinedButtonIcon.primary(

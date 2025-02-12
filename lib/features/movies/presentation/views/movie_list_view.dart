@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:tentwentyassesment/core/app_style.dart';
+import 'package:tentwentyassesment/core/app_symbols.dart';
 import 'package:tentwentyassesment/features/movies/data/models/movie.dart';
 import 'package:tentwentyassesment/features/movies/presentation/views/search_movies_view.dart';
 import '../../../../common/widget/app_bar.dart';
@@ -36,7 +37,7 @@ class MovieListView extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () => _onSearchTap(context),
-            icon: const Icon(Icons.search),
+            icon: Symbols.findIcon,
           )
         ],
       ),

@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tentwentyassesment/common/new_network/dio_wrapper.dart';
 

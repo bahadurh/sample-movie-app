@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:tentwentyassesment/features/movies/data/models/genre.dart';
 import 'package:tentwentyassesment/features/movies/data/models/movie.dart';
 
