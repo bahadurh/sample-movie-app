@@ -1,5 +1,5 @@
 import 'package:intl/intl.dart';
-import 'package:logger/logger.dart';
+import 'package:tentwentyassesment/core/app_style.dart';
 
 import '../features/movies/data/models/genre.dart';
 
@@ -29,7 +29,7 @@ final Map<int, Genre> availableGenres = {
 };
 
 String getRandomThumbnail() {
-  return "https://picsum.photos/400/600?random=${DateTime.now().millisecondsSinceEpoch}";
+  return "https://picsum.photos/400/600?random=${random.nextInt(100)}";
 }
 
 /// Converting the date string to a formatted date

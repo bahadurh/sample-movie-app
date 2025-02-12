@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_workers/utils/debouncer.dart';
+import 'package:tentwentyassesment/common/widget/loading_widget.dart';
 import 'package:tentwentyassesment/core/app_utils.dart';
 import 'package:tentwentyassesment/features/movies/data/models/genre.dart';
 import 'package:tentwentyassesment/features/movies/domain/usecases/search_movies_usecase.dart';
@@ -11,6 +12,7 @@ import '../../../../core/app_style.dart';
 import '../../../../di.dart';
 import '../../data/models/movie.dart';
 import '../controllers/search_controller.dart';
+import 'genre_detail_view.dart';
 import 'movie_detail_view.dart';
 
 class MovieSearchPage extends StatefulWidget {
@@ -35,7 +37,7 @@ class _MovieSearchPageState extends State<MovieSearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GetBuilder<MovieSearchController>(
-        init: MovieSearchController(getIt<MovieSearchUseCase>()),
+        init: MovieSearchController(getIt<SearchMoviesUseCase>()),
         builder: (controller) {
           return Column(
             children: [
@@ -72,7 +74,7 @@ class _MovieSearchPageState extends State<MovieSearchPage> {
                 ),
               ),
               if (controller.isLoading)
-                Center(child: CircularProgressIndicator())
+                LoadingWidget()
               else if (controller.movies.isNotEmpty)
                 Expanded(
                   child: Column(
@@ -114,7 +116,7 @@ class _MovieSearchPageState extends State<MovieSearchPage> {
                     itemCount: genres.length,
                     itemBuilder: (context, index) {
                       final genre = genres[index];
-                      return InkWell(onTap: () => _onQueryChanged(genre.name), child: GenreItem(genre: genre));
+                      return InkWell(onTap: () => _onGenreTap(genre), child: GenreItem(genre: genre));
                     },
                   ),
                 )
@@ -141,6 +143,6 @@ class _MovieSearchPageState extends State<MovieSearchPage> {
   }
 
   void _onGenreTap(Genre genre) {
-
+    Navigator.push(context, MaterialPageRoute(builder: (context) => GenreSearchView(genre: genre)));
   }
 }

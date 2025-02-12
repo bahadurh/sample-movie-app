@@ -19,4 +19,14 @@ class MovieRepositoryImpl extends MovieRepository {
 
     return result;
   }
+
+  @override
+  Future<Result<MovieSearchResult>> searchByGenre(String genre, int page) async {
+    final result = await DioHelper.toResult(
+      client.get('/discover/movie?with_genres=$genre&page=$page'),
+      (result) => MovieSearchResult.fromJson(result),
+    );
+
+    return result;
+  }
 }

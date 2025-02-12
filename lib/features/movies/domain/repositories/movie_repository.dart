@@ -5,5 +5,5 @@ import '../../data/models/movie_search_result.dart';
 
 abstract class MovieRepository {
   Future<Result<MovieSearchResult>> searchMovies(String query, int page);
-
+  Future<Result<MovieSearchResult>> searchByGenre(String genre, int page);
 }

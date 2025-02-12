@@ -7,10 +7,10 @@ import '../../data/models/movie_search_result.dart';
 import '../repositories/movie_repository.dart';
 
 @immutable
-class MovieSearchUseCase implements UseCase<MovieSearchResult, MovieSearchParams> {
+class SearchMoviesUseCase implements UseCase<MovieSearchResult, MovieSearchParams> {
   final MovieRepository repository;
 
-  const MovieSearchUseCase(this.repository);
+  const SearchMoviesUseCase(this.repository);
 
   @override
   Future<Result<MovieSearchResult>> call(MovieSearchParams params) async {
