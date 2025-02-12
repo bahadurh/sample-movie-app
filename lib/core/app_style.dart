@@ -37,6 +37,7 @@ abstract interface class AppColors {
 }
 
 const textStyle18MediumWhite = TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: AppColors.white);
+const textStyle18MediumBlack = TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: AppColors.black);
 const textStyle16MediumWhite = TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: AppColors.white);
 const textStyle16MediumBlack = TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: AppColors.black);
 const textStyle16MediumSemiWhite = TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: AppColors.semiWhite);

@@ -1,4 +1,5 @@
 import 'package:tentwentyassesment/features/movies/data/models/movie.dart';
+import 'package:tentwentyassesment/features/movies/data/models/trailer_result.dart';
 import 'package:tentwentyassesment/features/movies/domain/repositories/movie_repository.dart';
 
 import '../../../../common/new_network/dio_client.dart';
@@ -66,6 +67,18 @@ class MovieRepositoryImpl extends MovieRepository {
       client.get('/movie/upcoming?page=$page'),
       (result) {
         return MovieSearchResult.fromJson(result);
+      },
+    );
+
+    return result;
+  }
+
+  @override
+  Future<Result<TrailerResult>> getMovieTrailer(int movieId) async {
+    final result = await DioHelper.toResult(
+      client.get('/movie/$movieId/videos'),
+      (result) {
+        return TrailerResult.fromJson(result);
       },
     );
 

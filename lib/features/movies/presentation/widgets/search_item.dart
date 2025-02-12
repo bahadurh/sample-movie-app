@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tentwentyassesment/core/app_style.dart';
+import 'package:tentwentyassesment/core/app_symbols.dart';
 import 'package:tentwentyassesment/core/app_utils.dart';
 import 'package:tentwentyassesment/features/movies/data/models/movie.dart';
 
@@ -27,6 +28,11 @@ class SearchItem extends StatelessWidget {
                 Text(genreName, style: textStyle12MediumGreyNormal),
               ],
             ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Icon(Icons.more_horiz_outlined, color: AppColors.blueLight, size: 20),
           ),
         ],
       ),

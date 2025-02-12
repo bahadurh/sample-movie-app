@@ -7,8 +7,9 @@ import 'package:tentwentyassesment/features/movies/domain/usecases/search_movies
 import 'common/controllers/app_controller.dart';
 import 'common/new_network/dio_client.dart';
 import 'features/movies/domain/repositories/movie_repository.dart';
-import 'features/movies/domain/usecases/getMovieDetailsUseCase.dart';
 import 'features/movies/domain/usecases/get_genres_usecase.dart';
+import 'features/movies/domain/usecases/get_movie_details_use_case.dart';
+import 'features/movies/domain/usecases/get_trailer_usercase.dart';
 import 'features/movies/domain/usecases/get_upcomming_movies_usecase.dart';
 import 'features/movies/presentation/controllers/upcomming_movies_controller.dart';
 
@@ -25,6 +26,7 @@ Future<void> initDependency() async {
   getIt.registerLazySingleton(() => GetGenresUseCase(getIt<MovieRepository>()));
   getIt.registerLazySingleton(() => GetMovieDetailsUseCase(getIt<MovieRepository>()));
   getIt.registerLazySingleton(() => GetUpcomingMoviesUseCase(getIt<MovieRepository>()));
+  getIt.registerLazySingleton(() => GetTrailerUserCase(getIt<MovieRepository>()));
 
 
   // Movie repository
