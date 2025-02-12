@@ -1,4 +1,4 @@
-import 'package:tentwentyassesment/common/network/api_config.dart';
+import '../../../../common/new_network/api_config.dart';
 import '../../domain/entities/movie_entity.dart';
 
 class Movie extends MovieEntity {

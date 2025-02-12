@@ -141,7 +141,7 @@ class MovieDetailView extends StatelessWidget {
               final genre = availableGenres[e];
               if (genre != null) {
                 return CustomChip(
-                  text: genre,
+                  text: genre.name,
                   backgroundColor: ColorHelper.getRandomChipColor(item.genreIds.indexOf(e)),
                 );
               }

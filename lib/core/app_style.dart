@@ -20,6 +20,7 @@ abstract interface class AppColors {
   static const Color white = Color(0xffffffff);
   static const Color black = Color(0xff000000);
   static const Color semiWhite = Color(0xff202C43);
+  static  Color semiWhite30 = Color(0xff202C43).withOpacity(.3);
 
   static const blackGradient = LinearGradient(
     begin: Alignment.topCenter,
@@ -37,11 +38,14 @@ abstract interface class AppColors {
 
 const textStyle18MediumWhite = TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: AppColors.white);
 const textStyle16MediumWhite = TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: AppColors.white);
+const textStyle16MediumBlack = TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: AppColors.black);
 const textStyle16MediumSemiWhite = TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: AppColors.semiWhite);
 const textStyle14SemiBoldWhite = TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.white);
 const textStyle14SemiBoldBlack = TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.black);
 const textStyle12SemiBoldWhite = TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: AppColors.white);
 const textStyle12RegularSemiMoreLight = TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: AppColors.greySemiMoreLight);
+const textStyle12MediumGreyNormal = TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: AppColors.greyNormal);
+const textStyle12BlackNormal = TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: AppColors.black);
 
 const headLine6 = TextStyle(
   fontSize: 12,

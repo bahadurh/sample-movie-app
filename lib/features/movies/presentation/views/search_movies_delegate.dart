@@ -1,82 +1,146 @@
 import 'package:flutter/material.dart';
-import 'package:tentwentyassesment/core/app_style.dart';
-import 'package:tentwentyassesment/features/movies/data/models/movie_search_result.dart';
- import 'package:tentwentyassesment/features/movies/domain/usecases/search_movies_usecase.dart';
+import 'package:get/get.dart';
+import 'package:get/get_rx/src/rx_workers/utils/debouncer.dart';
+import 'package:tentwentyassesment/core/app_utils.dart';
+import 'package:tentwentyassesment/features/movies/data/models/genre.dart';
+import 'package:tentwentyassesment/features/movies/domain/usecases/search_movies_usecase.dart';
+import 'package:tentwentyassesment/features/movies/presentation/widgets/genre_item.dart';
+import 'package:tentwentyassesment/features/movies/presentation/widgets/search_item.dart';
 
+import '../../../../core/app_style.dart';
+import '../../../../di.dart';
 import '../../data/models/movie.dart';
+import '../controllers/search_controller.dart';
+import 'movie_detail_view.dart';
 
-
-class SearchMoviesDelegate extends SearchDelegate {
-  final MovieSearchUseCase searchMoviesUseCase;
-  int currentPage = 1;
-  List<Movie> movies = [];
-
-  SearchMoviesDelegate({required this.searchMoviesUseCase});
+class MovieSearchPage extends StatefulWidget {
+  const MovieSearchPage({super.key});
 
   @override
-  ThemeData appBarTheme(BuildContext context) {
-    return Theme.of(context).copyWith(
-      primaryColor: AppColors.white,
-    );
+  State<MovieSearchPage> createState() => _MovieSearchPageState();
+}
+
+class _MovieSearchPageState extends State<MovieSearchPage> {
+  List<Genre> genres = [];
+  final TextEditingController _searchController = TextEditingController();
+  final Debouncer _debouncer = Debouncer(delay: const Duration(milliseconds: 500));
+
+  @override
+  void initState() {
+    super.initState();
+    genres = availableGenres.values.toList();
   }
 
   @override
-  List<Widget> buildActions(BuildContext context) {
-    return [
-      IconButton(
-        onPressed: () => query = "",
-        icon: const Icon(Icons.close),
-      ),
-    ];
-  }
-
-  @override
-  Widget buildLeading(BuildContext context) {
-    return IconButton(
-      onPressed: () => close(context, null),
-      icon: const Icon(Icons.arrow_back),
-    );
-  }
-
-  Future<void> fetchMovies(BuildContext context) async {
-    final result = await searchMoviesUseCase.execute(query, currentPage);
-    if (result.movies.isNotEmpty) {
-      movies.addAll(result.movies);
-      currentPage++; // Increment page
-    }
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    return FutureBuilder<MovieSearchResult>(
-      future: searchMoviesUseCase.execute(query, currentPage),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
-        } else if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}'));
-        } else if (snapshot.hasData) {
-          final movies = snapshot.data!;
-          return ListView.builder(
-            itemCount: movies.movies.length,
-            itemBuilder: (context, index) {
-              final movie = movies.movies[index];
-              return ListTile(
-                title: Text(movie.title),
-                subtitle: Text(movie.releaseDate),
-                onTap: () => close(context, movie),
-              );
-            },
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: GetBuilder<MovieSearchController>(
+        init: MovieSearchController(getIt<MovieSearchUseCase>()),
+        builder: (controller) {
+          return Column(
+            children: [
+              Container(
+                padding: MediaQuery.of(context).padding,
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 25),
+                  child: TextFormField(
+                    controller: _searchController,
+                    onChanged: _onQueryChanged,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.search, color: AppColors.semiWhite),
+                      suffixIcon: _searchController.text.isNotEmpty
+                          ? IconButton(
+                              icon: Icon(Icons.clear, color: AppColors.semiWhite),
+                              onPressed: _onClearSearchTap,
+                            )
+                          : null,
+                      hintText: 'TV shows, movies and more',
+                      hintStyle: TextStyle(fontSize: 15.0, color: AppColors.semiWhite30, fontWeight: FontWeight.w500),
+                      contentPadding: const EdgeInsets.all(15),
+                      border:
+                          OutlineInputBorder(borderRadius: BorderRadius.circular(30), borderSide: BorderSide(color: Colors.transparent)),
+                      // no border
+                      focusedBorder:
+                          OutlineInputBorder(borderRadius: BorderRadius.circular(30), borderSide: BorderSide(color: Colors.transparent)),
+                      enabledBorder:
+                          OutlineInputBorder(borderRadius: BorderRadius.circular(30), borderSide: BorderSide(color: Colors.transparent)),
+                      fillColor: AppColors.greySemiLight,
+                      filled: true,
+                    ),
+                  ),
+                ),
+              ),
+              if (controller.isLoading)
+                Center(child: CircularProgressIndicator())
+              else if (controller.movies.isNotEmpty)
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 30, left: 21),
+                        child: Text('Top Results', style: textStyle12BlackNormal),
+                      ),
+                      Expanded(
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          padding: const EdgeInsets.symmetric(vertical: 0),
+                          itemCount: controller.movies.length,
+                          itemBuilder: (context, index) {
+                            final movie = controller.movies[index];
+                            return GestureDetector(
+                              onTap: () => _onMovieTap(movie),
+                              child: SearchItem(item: movie),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              else if (_searchController.text.isNotEmpty)
+                Center(child: Text('No results found.'))
+              else
+                Expanded(
+                  child: GridView.builder(
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1.63,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                    ),
+                    itemCount: genres.length,
+                    itemBuilder: (context, index) {
+                      final genre = genres[index];
+                      return InkWell(onTap: () => _onQueryChanged(genre.name), child: GenreItem(genre: genre));
+                    },
+                  ),
+                )
+            ],
           );
-        } else {
-          return Center(child: Text('No results found.'));
-        }
-      },
+        },
+      ),
     );
   }
 
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    return Container(); // Suggestions handling can be added here if needed
+  void _onMovieTap(Movie movie) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetailView(item: movie)));
+  }
+
+  void _onClearSearchTap() {
+    _searchController.clear();
+    Get.find<MovieSearchController>().setSearchQuery('');
+  }
+
+  void _onQueryChanged(String query) {
+    _debouncer(() {
+      Get.find<MovieSearchController>().setSearchQuery(query);
+    });
+  }
+
+  void _onGenreTap(Genre genre) {
+
   }
 }

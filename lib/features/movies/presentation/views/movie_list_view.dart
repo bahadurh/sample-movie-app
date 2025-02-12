@@ -18,13 +18,12 @@ class MovieListView extends StatefulWidget {
 
 class _MovieListViewState extends State<MovieListView> {
   Future<void> _onSearchTap() async {
-    final result = await showSearch(
-      context: context,
-      delegate: SearchMoviesDelegate(searchMoviesUseCase: getIt<MovieSearchUseCase>()),
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => MovieSearchPage(),
+      ),
     );
-    if(result is Movie) {
-      _onMovieItemTap(result);
-    }
   }
 
   void _onMovieItemTap(Movie item) {

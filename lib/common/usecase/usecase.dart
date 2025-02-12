@@ -1,5 +1,6 @@
-import 'package:dartz/dartz.dart';
+
+import '../new_network/dio_wrapper.dart';
 
 abstract class UseCase<Type, Params> {
-  Future<Either<String, Type>> call(Params params);
+  Future<Result<Type>> call(Params params);
 }

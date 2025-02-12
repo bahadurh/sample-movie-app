@@ -12,6 +12,6 @@ abstract interface class ApiConfig {
   static const String movie = '/movie';
   static const String upcoming = '/$movie/upcoming';
 
-  static String search(String qp) => '/search/$movie?query=$qp';
+  static const String search = '/search/$movie';
   static const header = {'Authorization': 'Bearer $token', 'content-Type': 'application/json'};
 }

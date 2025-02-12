@@ -1,4 +1,4 @@
-import 'package:tentwentyassesment/features/movies/domain/entities/movie_result_entity.dart';
+import '../../domain/entities/movie_search_result_entity.dart';
 import 'movie.dart';
 
 class MovieSearchResult extends MovieSearchResultEntity {
