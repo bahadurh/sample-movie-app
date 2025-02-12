@@ -47,6 +47,7 @@ dependencies:
   google_fonts: ^6.2.1
   intl:
   infinite_scroll_pagination: ^4.1.0
+  shimmer_animation: ^2.2.2
 
 dev_dependencies:
   flutter_test:

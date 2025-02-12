@@ -11,6 +11,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final PreferredSizeWidget? bottom;
   final isDarkMode = false;
   final IconThemeData? iconTheme;
+  final bool disableLeading;
 
   const CommonAppBar({
     super.key,
@@ -21,15 +22,24 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.bottom,
     this.shouldHaveBorder = true,
     this.iconTheme,
-
+    this.disableLeading = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: Navigator.of(context).canPop() ? IconButton(
-          onPressed: () => Navigator.of(context).pop(),
-          icon: isDarkMode ? const Icon(Icons.arrow_back_ios, color: Colors.white) : const Icon(Icons.arrow_back_ios, color: Colors.black)) : null,
+      automaticallyImplyLeading: disableLeading ? false : true,
+      leading: disableLeading
+          ? null
+          : Navigator.of(context).canPop()
+              ? IconButton(
+                  onPressed: () {
+                    if (Navigator.of(context).canPop()) Navigator.of(context).pop();
+                  },
+                  icon: isDarkMode
+                      ? const Icon(Icons.arrow_back_ios, color: Colors.white)
+                      : const Icon(Icons.arrow_back_ios, color: Colors.black))
+              : null,
       backgroundColor: backgroundColor,
       iconTheme: iconTheme,
       title: Text(title, style: titleTextStyle),

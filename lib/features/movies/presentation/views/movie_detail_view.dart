@@ -6,6 +6,7 @@ import 'package:tentwentyassesment/common/widget/outlined_button.dart';
 import 'package:tentwentyassesment/common/widget/primary_button.dart';
 import 'package:tentwentyassesment/core/app_style.dart';
 import 'package:tentwentyassesment/features/movies/presentation/controllers/movie_detail_controller.dart';
+import 'package:tentwentyassesment/features/movies/presentation/widgets/movies_loading.dart';
 
 import '../../../../core/app_utils.dart';
 import '../../../../di.dart';
@@ -39,8 +40,7 @@ class MovieDetailView extends StatelessWidget {
                   Text("Overview", style: textStyle14SemiBoldBlack),
                   SizedBox(height: 14),
                   Text(
-                    "When a single mom and her two kids arrive in a small town, they begin to discover their connection to the original Ghostbusters and the secret legacy their grandfather left behind." *
-                        9,
+                    item.overview ?? "",
                     style: textStyle12RegularSemiMoreLight,
                   ),
                   SizedBox(height: 20),
@@ -140,8 +140,8 @@ class MovieDetailView extends StatelessWidget {
               SizedBox(height: 27),
               Text("Genres", style: textStyle14SemiBoldBlack),
               SizedBox(height: 14),
-              controller.isLoading
-                  ? Center(child: CircularProgressIndicator())
+               controller.isLoading
+                  ? GenresLoadingShimmer()
                   : (controller.movie.genres?.isEmpty ?? true)
                       ? SizedBox.shrink()
                       : Wrap(

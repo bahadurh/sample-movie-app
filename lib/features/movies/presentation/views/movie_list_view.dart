@@ -30,6 +30,7 @@ class MovieListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommonAppBar(
+        disableLeading: true,
         backgroundColor: AppColors.white,
         title: "Watch",
         actions: [

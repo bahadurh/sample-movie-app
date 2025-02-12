@@ -56,7 +56,10 @@ class GenreSearchView extends StatelessWidget {
                   ),
                 )
               else
-                Center(child: Text('No results found.'))
+                Center(child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('No results found.'),
+                ))
             ],
           );
         },

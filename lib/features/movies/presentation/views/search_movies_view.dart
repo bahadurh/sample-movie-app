@@ -103,7 +103,10 @@ class _SearchMoviesViewState extends State<SearchMoviesView> {
                   ),
                 )
               else if (_searchController.text.isNotEmpty)
-                Center(child: Text('No results found.'))
+                Center(child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('No results found.'),
+                ))
               else
                 Expanded(
                   child: GridView.builder(
