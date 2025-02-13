@@ -62,4 +62,18 @@ class Movie extends MovieEntity {
       releaseDate: releaseDate ?? this.releaseDate,
     );
   }
+
+
+  static Movie seedRandom() {
+    return Movie(
+      id: 1,
+      title: 'Title',
+      overview: 'Overview',
+      posterPath: 'https://image.tmdb.org/t/p/w500/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg',
+      backdropPath: 'https://image.tmdb.org/t/p/w500/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg',
+      genreIds: [1, 2],
+      genres: [],
+      releaseDate: '2021-09-29',
+    );
+  }
 }

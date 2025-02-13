@@ -88,6 +88,7 @@ class _SearchMoviesViewState extends State<SearchMoviesView> {
                       Expanded(
                         child: ListView.builder(
                           shrinkWrap: true,
+                          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                           padding: const EdgeInsets.symmetric(vertical: 0),
                           itemCount: controller.movies.length,
                           itemBuilder: (context, index) {

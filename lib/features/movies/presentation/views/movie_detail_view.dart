@@ -13,6 +13,7 @@ import 'package:tentwentyassesment/features/movies/presentation/widgets/movies_l
 import '../../../../core/app_mixins.dart';
 import '../../../../core/app_utils.dart';
 import '../../../../di.dart';
+import '../../../seat_booking/presentation/views/seat_booking_view.dart';
 import '../../data/models/movie.dart';
 import '../../data/models/trailer.dart';
 import '../../domain/usecases/get_movie_details_use_case.dart';
@@ -35,7 +36,9 @@ class _MovieDetailViewState extends State<MovieDetailView> with LoadingStateMixi
     });
   }
 
-  void _onGetTickTap() {}
+  void _onGetTickTap() {
+    Navigator.push(context, (MaterialPageRoute(builder: (context) => SeatsBookingView(movie: widget.item))));
+  }
 
   Future<void> _onWatchTrailerTap() async {
     final controller = Get.find<MovieDetailController>();
@@ -53,34 +56,37 @@ class _MovieDetailViewState extends State<MovieDetailView> with LoadingStateMixi
     showModalBottomSheet(
       context: context,
       backgroundColor: AppColors.white,
+      showDragHandle: true,
       builder: (context) {
-        return Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text("Available trailers", style: textStyle18MediumBlack),
-            ),
-            ListView.separated(
-              padding: const EdgeInsets.all(8),
-              shrinkWrap: true,
-              itemCount: trailers.length,
-              separatorBuilder: (_, __) => const Divider(),
-              itemBuilder: (context, index) {
-                final trailer = trailers[index];
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ListTile(
-                    leading: const Icon(Icons.play_circle_outline),
-                    title: Text(trailer.name + " (${trailer.size}p)", style: textStyle14SemiBoldBlack),
-                    onTap: () {
-                      Navigator.pop(context); // Close the bottom sheet
-                      _navigateToTrailer(trailer.url);
-                    },
-                  ),
-                );
-              },
-            ),
-          ],
+        return SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("Available trailers", style: textStyle18MediumBlack),
+              ),
+              ListView.separated(
+                padding: const EdgeInsets.all(8),
+                shrinkWrap: true,
+                itemCount: trailers.length,
+                separatorBuilder: (_, __) => const Divider(),
+                itemBuilder: (context, index) {
+                  final trailer = trailers[index];
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      leading: const Icon(Icons.play_circle_outline),
+                      title: Text(trailer.name + " (${trailer.size}p)", style: textStyle14SemiBoldBlack),
+                      onTap: () {
+                        Navigator.pop(context); // Close the bottom sheet
+                        _navigateToTrailer(trailer.url);
+                      },
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
         );
       },
     );

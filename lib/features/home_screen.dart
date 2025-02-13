@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tentwentyassesment/core/app_symbols.dart';
+import 'package:tentwentyassesment/features/movies/data/models/movie.dart';
 
 import '../common/widget/navbar.dart';
 import 'movies/presentation/views/movie_list_view.dart';
+import 'seat_booking/presentation/views/seat_booking_view.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _currentIndex = 0;
+  int _currentIndex = 1;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -21,7 +23,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Widget> screens = [
-    Container(alignment: Alignment.center, child: Text("Dashboard")),
+    // Container(alignment: Alignment.center, child: Text("Media Library")),
+    SeatsBookingView(movie: Movie.seedRandom()),
     MovieListView(),
     Container(alignment: Alignment.center, child: Text("Media Library")),
     Container(alignment: Alignment.center, child: Text("More")),

@@ -6,6 +6,7 @@ class AppSvgAsset extends StatelessWidget {
   final double? height;
   final double? width;
   final Color? color;
+  final BoxFit fit;
 
   const AppSvgAsset(
     this.assetPath, {
@@ -13,6 +14,7 @@ class AppSvgAsset extends StatelessWidget {
     this.height = 16,
     this.width = 16,
     this.color,
+    this.fit = BoxFit.contain,
   }) : super(key: key);
 
   AppSvgAsset copyWith({
@@ -32,6 +34,11 @@ class AppSvgAsset extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SvgPicture.asset(assetPath,
-        height: height, width: width, colorFilter: color != null ? ColorFilter.mode(color!, BlendMode.srcIn) : null);
+      height: height,
+      width: width,
+
+      fit: fit,
+      colorFilter: color != null ? ColorFilter.mode(color!, BlendMode.srcIn) : null,
+    );
   }
 }

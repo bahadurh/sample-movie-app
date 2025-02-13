@@ -41,68 +41,23 @@ const textStyle18MediumBlack = TextStyle(fontSize: 18, fontWeight: FontWeight.w5
 const textStyle16MediumWhite = TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: AppColors.white);
 const textStyle16MediumBlack = TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: AppColors.black);
 const textStyle16MediumSemiWhite = TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: AppColors.semiWhite);
+const textStyle16SemiBoldBlack = TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: AppColors.black);
 const textStyle14SemiBoldWhite = TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.white);
 const textStyle14SemiBoldBlack = TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.black);
+const textStyle14MediumBlack = TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.black);
 const textStyle12SemiBoldWhite = TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: AppColors.white);
+const textStyle12SemiBoldBlack = TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: AppColors.black);
+const textStyle12BoldBlack = TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppColors.black);
 const textStyle12RegularSemiMoreLight = TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: AppColors.greySemiMoreLight);
 const textStyle12MediumGreyNormal = TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: AppColors.greyNormal);
+const textStyle12MediumGreySemiMoreLight = TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: AppColors.greySemiMoreLight);
+const textStyle12MediumLightBlue = TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: AppColors.blueLight);
+const textStyle12MediumBlack = TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: AppColors.black);
 const textStyle12BlackNormal = TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: AppColors.black);
+const textStyle10RegularBlack = TextStyle(fontSize: 10, fontWeight: FontWeight.w400, color: AppColors.black);
+const textStyle8MediumGreySemiMoreLight = TextStyle(fontSize: 8, fontWeight: FontWeight.w500, color: AppColors.greySemiMoreLight);
 
-const headLine6 = TextStyle(
-  fontSize: 12,
-  fontWeight: FontWeight.w500,
-  color: Colors.grey,
-  overflow: TextOverflow.ellipsis,
-);
 
-const headLine5 = TextStyle(fontSize: 15, fontWeight: FontWeight.bold);
-
-const headLine4 = TextStyle(
-  fontSize: 16,
-  fontWeight: FontWeight.w700,
-  overflow: TextOverflow.ellipsis,
-);
-
-const headLine3 = TextStyle(
-  fontSize: 17,
-  fontWeight: FontWeight.w700,
-  overflow: TextOverflow.ellipsis,
-);
-
-const headLine2 = TextStyle(
-  fontSize: 18,
-  fontWeight: FontWeight.bold,
-  overflow: TextOverflow.ellipsis,
-);
-
-const headLine1 = TextStyle(fontSize: 20, fontWeight: FontWeight.w900);
-
-const focusedBorder = OutlineInputBorder(
-  borderSide: BorderSide(color: Colors.black54, width: 2.0),
-  borderRadius: BorderRadius.all(Radius.circular(10.0)),
-);
-
-const enabledBorder = OutlineInputBorder(
-  borderSide: BorderSide(color: Colors.black12, width: 1.0),
-  borderRadius: BorderRadius.all(Radius.circular(10.0)),
-);
-
-const errorBorder = OutlineInputBorder(
-  borderSide: BorderSide(width: 3, color: Colors.redAccent),
-  borderRadius: BorderRadius.all(Radius.circular(10.0)),
-);
-
-const inputBorder = OutlineInputBorder(
-  borderRadius: BorderRadius.all(Radius.circular(10.0)),
-  borderSide: BorderSide(color: Colors.redAccent),
-);
-
-const focusedErrorBorder = OutlineInputBorder(
-  borderSide: BorderSide(width: 3, color: Colors.redAccent),
-  borderRadius: BorderRadius.all(
-    Radius.circular(10.0),
-  ),
-);
 
 extension ColorHelper on AppColors {
   static Color getRandomChipColor(int index) {
