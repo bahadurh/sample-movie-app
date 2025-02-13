@@ -1,7 +1,7 @@
 import 'package:tentwentyassesment/features/movies/data/models/genre.dart';
 import 'package:tentwentyassesment/features/movies/data/models/movie.dart';
 
-import '../../../../common/new_network/dio_wrapper.dart';
+import '../../../../common/network/dio_wrapper.dart';
 import '../../data/models/movie_search_result.dart';
 import '../../data/models/trailer_result.dart';
 

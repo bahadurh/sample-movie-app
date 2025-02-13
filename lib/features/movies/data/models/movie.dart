@@ -1,4 +1,4 @@
-import '../../../../common/new_network/api_config.dart';
+import '../../../../common/network/api_config.dart';
 import '../../domain/entities/movie_entity.dart';
 import 'genre.dart';
 

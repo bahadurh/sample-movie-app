@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:tentwentyassesment/common/new_network/dio_wrapper.dart';
+import 'package:tentwentyassesment/common/network/dio_wrapper.dart';
 import 'package:tentwentyassesment/features/movies/data/models/genre.dart';
 
 import '../../../../common/usecase/usecase.dart';

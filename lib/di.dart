@@ -5,7 +5,7 @@ import 'package:tentwentyassesment/features/movies/domain/usecases/search_genre_
 import 'package:tentwentyassesment/features/movies/domain/usecases/search_movies_usecase.dart';
 
 import 'common/controllers/app_controller.dart';
-import 'common/new_network/dio_client.dart';
+import 'common/network/dio_client.dart';
 import 'features/movies/domain/repositories/movie_repository.dart';
 import 'features/movies/domain/usecases/get_genres_usecase.dart';
 import 'features/movies/domain/usecases/get_movie_details_use_case.dart';

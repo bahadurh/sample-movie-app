@@ -2,9 +2,9 @@ import 'package:tentwentyassesment/features/movies/data/models/movie.dart';
 import 'package:tentwentyassesment/features/movies/data/models/trailer_result.dart';
 import 'package:tentwentyassesment/features/movies/domain/repositories/movie_repository.dart';
 
-import '../../../../common/new_network/dio_client.dart';
-import '../../../../common/new_network/dio_helper.dart';
-import '../../../../common/new_network/dio_wrapper.dart';
+import '../../../../common/network/dio_client.dart';
+import '../../../../common/network/dio_helper.dart';
+import '../../../../common/network/dio_wrapper.dart';
 import '../models/genre.dart';
 import '../models/movie_search_result.dart';
 
