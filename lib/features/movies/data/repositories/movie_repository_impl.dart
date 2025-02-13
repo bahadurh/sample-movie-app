@@ -1,3 +1,4 @@
+import 'package:tentwentyassesment/common/network/api_config.dart';
 import 'package:tentwentyassesment/features/movies/data/models/movie.dart';
 import 'package:tentwentyassesment/features/movies/data/models/trailer_result.dart';
 import 'package:tentwentyassesment/features/movies/domain/repositories/movie_repository.dart';
@@ -26,7 +27,7 @@ class MovieRepositoryImpl extends MovieRepository {
   @override
   Future<Result<MovieSearchResult>> searchByGenre(String genre, int page) async {
     final result = await DioHelper.toResult(
-      client.get('/discover/movie?with_genres=$genre&page=$page'),
+      client.get('${ApiConfig.searchByGenre}?with_genres=$genre&page=$page'),
       (result) => MovieSearchResult.fromJson(result),
     );
 
@@ -36,7 +37,7 @@ class MovieRepositoryImpl extends MovieRepository {
   @override
   Future<Result<List<Genre>>> getGenres() async {
     final result = await DioHelper.toResult(
-      client.get('/genre/movie/list'),
+      client.get(ApiConfig.genre),
       (result) {
         final List<Genre> genres = [];
         for (final genre in result['genres']) {
@@ -52,7 +53,7 @@ class MovieRepositoryImpl extends MovieRepository {
   @override
   Future<Result<Movie>> getMovieDetails(int movieId) async {
     final result = await DioHelper.toResult(
-      client.get('/movie/$movieId'),
+      client.get('${ApiConfig.movie}/$movieId'),
       (result) {
         return Movie.fromJson(result);
       },
@@ -64,7 +65,7 @@ class MovieRepositoryImpl extends MovieRepository {
   @override
   Future<Result<MovieSearchResult>> getUpcomingMovies(int page) async {
     final result = await DioHelper.toResult(
-      client.get('/movie/upcoming?page=$page'),
+      client.get('${ApiConfig.upcoming}?page=$page'),
       (result) {
         return MovieSearchResult.fromJson(result);
       },
@@ -76,7 +77,7 @@ class MovieRepositoryImpl extends MovieRepository {
   @override
   Future<Result<TrailerResult>> getMovieTrailer(int movieId) async {
     final result = await DioHelper.toResult(
-      client.get('/movie/$movieId/videos'),
+      client.get('${ApiConfig.movie}/$movieId/videos'),
       (result) {
         return TrailerResult.fromJson(result);
       },

@@ -11,10 +11,7 @@ class DioClient {
   DioClient()
       : _dio = Dio(
           BaseOptions(
-              headers: {
-                'Content-Type': 'application/json; charset=UTF-8',
-                'Authorization': 'Bearer $_bearerToken',
-              },
+              headers: ApiConfig.header,
               baseUrl: ApiConfig.baseUrl,
               responseType: ResponseType.json,
               sendTimeout: const Duration(seconds: 10),

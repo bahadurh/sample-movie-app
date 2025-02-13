@@ -10,8 +10,10 @@ abstract interface class ApiConfig {
   static const String users = '/users';
 
   static const String movie = '/movie';
-  static const String upcoming = '/$movie/upcoming';
-
+  static const String upcoming = '/movie/upcoming';
   static const String search = '/search/$movie';
+  static const String searchByGenre = '/discover$movie';
+  static const String genre = '/genre/movie/list';
+
   static const header = {'Authorization': 'Bearer $token', 'content-Type': 'application/json'};
 }
