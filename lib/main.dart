@@ -21,8 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'TenTwenty Assessment - Bahadur',
-      debugShowCheckedModeBanner: false,
+       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: AppColors.greyLight,
         primarySwatch: Colors.indigo,
