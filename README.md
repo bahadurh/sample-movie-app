@@ -1,6 +1,4 @@
-# assesment
-
-An assesment project for TenTwenty
+ 
 
 ## Getting Started
 
