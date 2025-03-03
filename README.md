@@ -1,4 +1,4 @@
-# tentwentyassesment
+# assesment
 
 An assesment project for TenTwenty
 
